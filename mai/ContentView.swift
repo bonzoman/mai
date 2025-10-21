@@ -232,8 +232,8 @@ struct ContentView: View {
 
     private func extractDates() -> [DateValue] {
         let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentMonth)) ?? currentMonth
-        let range = calendar.range(of: .day, in: .month, for: startOfMonth) ?? 1...30
-        var days = range.compactMap { day -> DateValue in
+        let dayRange = calendar.range(of: .day, in: .month, for: startOfMonth) ?? Range(1...31)
+        var days = dayRange.compactMap { day -> DateValue in
             let date = calendar.date(bySetting: .day, value: day, of: startOfMonth) ?? startOfMonth
             return DateValue(day: day, date: date)
         }
